@@ -422,3 +422,44 @@ DISCOVERY_F746NG.menu.serial.SerialUART1=SerialUART1 [Through ST-Link Virtual CO
 DISCOVERY_F746NG.menu.serial.SerialUART1.build.extra_flags_serial=-DMENU_SERIAL=SerialUART1
 DISCOVERY_F746NG.menu.serial.SerialUSB=SerialUSB
 DISCOVERY_F746NG.menu.serial.SerialUSB.build.extra_flags_serial=-DMENU_SERIAL=SerialUSB
+
+################################################################################
+# PICO_F446VE board
+
+PICO_F446VE.name=PICOPRINT F446VE
+
+PICO_F446VE.vid.0=0x0483
+PICO_F446VE.pid.0=0x5711
+
+PICO_F446VE.upload.maximum_size=524288
+PICO_F446VE.upload.maximum_data_size=131072
+
+PICO_F446VE.build.mcu=cortex-m4
+PICO_F446VE.build.core=arduino
+PICO_F446VE.build.variant=PICO_F446VE
+PICO_F446VE.build.board=PICO_F446VE
+PICO_F446VE.build.series=STM32F4
+PICO_F446VE.build.extra_flags=-DSTM32F446VE -DHSE_VALUE=12000000
+
+PICO_F446VE.upload.tool=stlink_upload
+PICO_F446VE.upload.protocol=STLink
+
+PICO_F446VE.menu.upload_method.STLinkMethod=STLink [Automatic serial = SerialUSB]
+PICO_F446VE.menu.upload_method.STLinkMethod.upload.protocol=STLink
+PICO_F446VE.menu.upload_method.STLinkMethod.upload.tool=stlink_upload
+PICO_F446VE.menu.upload_method.STLinkMethod.build.extra_flags_serial_auto=-DMENU_SERIAL_AUTO=SerialUSB
+
+PICO_F446VE.menu.upload_method.serialMethod=Serial UART1 [TX/PA9, RX/PA10, BOOT0=1, BOOT1=0]
+PICO_F446VE.menu.upload_method.serialMethod.upload.protocol=maple_serial
+PICO_F446VE.menu.upload_method.serialMethod.upload.tool=serial_upload
+PICO_F446VE.menu.upload_method.serialMethod.build.extra_flags_serial_auto=-DMENU_SERIAL_AUTO=SerialUART1
+
+PICO_F446VE.menu.usb.SerialUSB=Serial [Virtual COM port, PA11/PA12 pins]
+PICO_F446VE.menu.usb.SerialUSB.build.extra_flags_usb=-DMENU_USB_SERIAL
+PICO_F446VE.menu.usb.Disabled=Disabled, no USB
+
+PICO_F446VE.menu.serial.Automatic=Automatically selected based on upload method
+PICO_F446VE.menu.serial.SerialUSB=SerialUSB
+PICO_F446VE.menu.serial.SerialUSB.build.extra_flags_serial=-DMENU_SERIAL=SerialUSB
+PICO_F446VE.menu.serial.SerialUART1=SerialUART1
+PICO_F446VE.menu.serial.SerialUART1.build.extra_flags_serial=-DMENU_SERIAL=SerialUART1
