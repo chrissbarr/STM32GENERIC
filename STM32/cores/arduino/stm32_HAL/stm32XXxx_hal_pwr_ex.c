@@ -13,7 +13,7 @@
     
 #endif
 #ifdef STM32F4
-    
+	#include "stm32F4xx_hal_pwr_ex.c"    
 #endif
 #ifdef STM32F7
     #include "stm32F7xx_hal_pwr_ex.c"
