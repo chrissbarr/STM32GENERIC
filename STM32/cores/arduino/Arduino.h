@@ -29,6 +29,7 @@
 // #include <avr/pgmspace.h>
 // #include <avr/io.h>
 // #include <avr/interrupt.h>
+#include "bits.h"
 
 //#include "binary.h"
 
