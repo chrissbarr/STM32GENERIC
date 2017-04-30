@@ -83,7 +83,5 @@ const stm32_port_pin_type variant_pin_list[] = {
   { GPIOE, GPIO_PIN_13},
   { GPIOE, GPIO_PIN_14},
   { GPIOE, GPIO_PIN_15},
-  { GPIOH, GPIO_PIN_0 },
-  { GPIOH, GPIO_PIN_1 },
 };
 
