@@ -429,7 +429,7 @@ DISCOVERY_F746NG.menu.serial.SerialUSB.build.extra_flags_serial=-DMENU_SERIAL=Se
 PICO_F446VE.name=PICOPRINT F446VE
 
 PICO_F446VE.vid.0=0x0483
-PICO_F446VE.pid.0=0x5711
+PICO_F446VE.pid.0=0xdf11
 
 PICO_F446VE.upload.maximum_size=524288
 PICO_F446VE.upload.maximum_data_size=131072
@@ -453,6 +453,30 @@ PICO_F446VE.menu.upload_method.serialMethod=Serial UART1 [TX/PA9, RX/PA10, BOOT0
 PICO_F446VE.menu.upload_method.serialMethod.upload.protocol=maple_serial
 PICO_F446VE.menu.upload_method.serialMethod.upload.tool=serial_upload
 PICO_F446VE.menu.upload_method.serialMethod.build.extra_flags_serial_auto=-DMENU_SERIAL_AUTO=SerialUART1
+
+PICO_F446VE.menu.upload_method.DFUUploadMethod=USB DFU - STM32duino bootloader (0x10000)
+PICO_F446VE.menu.upload_method.DFUUploadMethod.upload.protocol=maple_dfu
+PICO_F446VE.menu.upload_method.DFUUploadMethod.upload.tool=maple_upload
+PICO_F446VE.menu.upload_method.DFUUploadMethod.build.extra_flags=-DSTM32F446VE -DVECT_TAB_OFFSET=0x10000 -DHSE_VALUE=12000000
+PICO_F446VE.menu.upload_method.DFUUploadMethod.build.ldscript=ldscript_bootloader_10000.ld
+PICO_F446VE.menu.upload_method.DFUUploadMethod.upload.usbID=0483:df11
+PICO_F446VE.menu.upload_method.DFUUploadMethod.upload.altID=2
+PICO_F446VE.menu.upload_method.DFUUploadMethod.flash.maximum_size=460000
+PICO_F446VE.menu.upload_method.DFUUploadMethod.maximum_data_size=460000
+PICO_F446VE.menu.upload_method.DFUUploadMethod.ram.maximum_size=131072
+PICO_F446VE.menu.upload_method.DFUUploadMethod.build.extra_flags_serial_auto=-DMENU_SERIAL_AUTO=SerialUSB
+
+PICO_F446VE.menu.upload_method.DFUUploadMethod2=USB DFU - Custom bootloader (0x10000)
+PICO_F446VE.menu.upload_method.DFUUploadMethod2.upload.protocol=pico_upload
+PICO_F446VE.menu.upload_method.DFUUploadMethod2.upload.tool=pico_upload
+PICO_F446VE.menu.upload_method.DFUUploadMethod2.build.extra_flags=-DSTM32F446VE -DVECT_TAB_OFFSET=0x10000 -DHSE_VALUE=12000000
+PICO_F446VE.menu.upload_method.DFUUploadMethod2.build.ldscript=ldscript_bootloader_10000.ld
+PICO_F446VE.menu.upload_method.DFUUploadMethod2.upload.usbID=0483:df11
+PICO_F446VE.menu.upload_method.DFUUploadMethod2.upload.altID=2
+PICO_F446VE.menu.upload_method.DFUUploadMethod2.flash.maximum_size=460000
+PICO_F446VE.menu.upload_method.DFUUploadMethod2.maximum_data_size=460000
+PICO_F446VE.menu.upload_method.DFUUploadMethod2.ram.maximum_size=131072
+PICO_F446VE.menu.upload_method.DFUUploadMethod2.build.extra_flags_serial_auto=-DMENU_SERIAL_AUTO=SerialUSB
 
 PICO_F446VE.menu.usb.SerialUSB=Serial [Virtual COM port, PA11/PA12 pins]
 PICO_F446VE.menu.usb.SerialUSB.build.extra_flags_usb=-DMENU_USB_SERIAL

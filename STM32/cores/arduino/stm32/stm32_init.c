@@ -6,6 +6,11 @@ void init() {
 }
 
 void initVariant() {
+
+  #if defined(VECT_TAB_OFFSET)
+  	SCB->VTOR = 0x08010000;//(0x08000000 || DVECT_TAB_OFFSET);
+  #endif
+
   SystemClock_Config();
   
   #ifdef STM32F1

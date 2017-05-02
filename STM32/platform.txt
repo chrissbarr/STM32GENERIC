@@ -143,6 +143,18 @@ tools.maple_upload.upload.params.verbose=-d
 tools.maple_upload.upload.params.quiet=
 tools.maple_upload.upload.pattern="{path}/{cmd}" {serial.port.file} {upload.altID} {upload.usbID} "{build.path}/{build.project_name}.bin"
 
+
+# Upload using PicoPrint bootloader over DFU
+tools.pico_upload.cmd=pico_upload
+tools.pico_upload.cmd.windows=dfu_upload.bat
+tools.pico_upload.path={runtime.hardware.path}/tools/win
+tools.pico_upload.path.macosx={runtime.tools.STM32Tools.path}/tools/macosx
+tools.pico_upload.path.linux={runtime.tools.STM32Tools.path}/tools/linux
+tools.pico_upload.path.linux64={runtime.tools.STM32Tools.path}/tools/linux64
+tools.pico_upload.upload.params.verbose=
+tools.pico_upload.upload.params.quiet=
+tools.pico_upload.upload.pattern="{path}/{cmd}" {serial.port.file} {upload.altID} {upload.usbID} "{build.path}/{build.project_name}.bin"
+
 #Added tool for generic STM32 upload via serial to Serial Port 1 (pins PA9 and PA10) - note. Boot0 line needs to high on board reset to enable upload via serial
 # at the end up the upload the program is automatically run, without the board being reset
 
