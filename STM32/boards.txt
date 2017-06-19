@@ -428,6 +428,7 @@ PICO_F446VE.build.variant=PICO_F446VE
 PICO_F446VE.build.board=PICO_F446VE
 PICO_F446VE.build.series=STM32F4
 PICO_F446VE.build.extra_flags=-DSTM32F446VE -DHSE_VALUE=12000000
+PICO_F446VE.build.f_cpu=180000000L
 
 PICO_F446VE.upload.tool=stlink_upload
 PICO_F446VE.upload.protocol=STLink
