@@ -360,6 +360,35 @@ NUCLEO_64.menu.upload_method.MassStorageMethod=Mass Storage
 NUCLEO_64.menu.upload_method.MassStorageMethod.upload.protocol=
 NUCLEO_64.menu.upload_method.MassStorageMethod.upload.tool=nucleoFlasher
 
+################################################################################
+# Generic F030F4 board
+
+GENERIC_F030F4.name=Generic F030F4
+
+GENERIC_F030F4.upload.maximum_size=16384
+GENERIC_F030F4.upload.maximum_data_size=4096
+
+GENERIC_F030F4.build.core=arduino
+GENERIC_F030F4.build.board=GENERIC_F030F4
+
+GENERIC_F030F4.build.mcu=cortex-m0
+GENERIC_F030F4.build.series=STM32F0
+GENERIC_F030F4.build.variant=GENERIC_F030F4
+GENERIC_F030F4.build.extra_flags=-DSTM32F030F4
+GENERIC_F030F4.build.f_cpu=48000000L
+
+GENERIC_F030F4.upload.protocol=STLink
+GENERIC_F030F4.upload.tool=stlink_upload
+
+GENERIC_F030F4.menu.upload_method.STLinkMethod=STLink
+GENERIC_F030F4.menu.upload_method.STLinkMethod.upload.protocol=STLink
+GENERIC_F030F4.menu.upload_method.STLinkMethod.upload.tool=stlink_upload
+
+GENERIC_F030F4.menu.usb.Disabled=Disabled, no USB
+
+GENERIC_F030F4.menu.serial.SerialUART1=SerialUART1 [Through ST-Link Virtual COM port] [PA9/PA10]
+GENERIC_F030F4.menu.serial.SerialUART1.build.extra_flags_serial=-DMENU_SERIAL=SerialUART1
+
 
 ################################################################################
 # Discovery L053C8 board
