@@ -1,3 +1,25 @@
+/*
+  Copyright (c) 2017 Daniel Fekete
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+*/
+
 /**
  * Function to set up GPIO alternate functions for pins.
  *
@@ -66,7 +88,7 @@ void stm32AfI2CInit(const I2C_TypeDef *instance,
     GPIO_TypeDef *sdaPort, uint32_t sdaPin,
     GPIO_TypeDef *sclPort, uint32_t sclPin);
 
-#if defined(SDIO) || defined(SDMMC)
+#if defined(SDIO) || defined(SDMMC1)
 
 #ifndef SD_TypeDef
 #define SD_TypeDef SDIO_TypeDef
@@ -111,14 +133,19 @@ uint32_t stm32GetClockFrequency(void *instance);
 uint8_t stm32ADC1GetChannel(GPIO_TypeDef *port, uint32_t pin_mask);
 
 /**
- * Internal: set the AF function for the selected peripheral on the selected pin
+ * Internal: set the AF function for the selected peripheral on the selected pin, with GPIO_SPEED_FREQ_VERY_HIGH speed
  */
 void stm32AfInit(const stm32_af_pin_list_type list[], int size, const void *instance, GPIO_TypeDef *port, uint32_t pin, uint32_t mode, uint32_t pull);
 
 /**
+ * Internal: set the AF function for the selected peripheral on the selected pin, with the specified GPIO speed
+ */
+void stm32AfInitSpeed(const stm32_af_pin_list_type list[], int size, const void *instance, GPIO_TypeDef *port, uint32_t pin, uint32_t mode, uint32_t pull, uint32_t speed);
+
+/**
  * Internal: get the default pin for the given peripheral
  */
-GPIO_TypeDef *stm32AfGetDefault(stm32_af_pin_list_type list[], int size, const void *instance, uint32_t *pin);
+GPIO_TypeDef *stm32AfGetDefault(const stm32_af_pin_list_type list[], int size, const void *instance, uint32_t *pin);
 
 
 #ifdef __cplusplus

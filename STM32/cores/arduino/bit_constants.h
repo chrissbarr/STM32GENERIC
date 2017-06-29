@@ -29,8 +29,8 @@
  * compatibility.
  */
 
-#ifndef _BIT_CONSTANTS_H_
-#define _BIT_CONSTANTS_H_
+#ifndef _WIRISH_BIT_CONSTANTS_H_
+#define _WIRISH_BIT_CONSTANTS_H_
 
 #define BIT0 (1 << 0)
 #define BIT1 (1 << 1)

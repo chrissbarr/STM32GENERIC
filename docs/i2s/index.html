@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>I2S - STM32GENERIC</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <link href="../css/base.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+         
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="..">STM32GENERIC</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="..">Installation</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../upload/">Uploading</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+<li >
+    <a href="../menu_options/">Menu options</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../arduino_api/">Arduino API</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../spi/">SPI</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../i2c/">I2C</a>
+</li>
+
+                    
+                        
+<li class="active">
+    <a href="./">I2S</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../sdio/">SDIO</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../uart/">UART Serial</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../usb_cdc/">USB Serial</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../usb_msc/">USB Mass Storage</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../stm32_hal/">STM32 HAL</a>
+</li>
+
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../libraries/">Libraries</a>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">STM32 Boards <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+<li >
+    <a href="../boards/">Boards list</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../add_board/">Adding a board</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="../test/">Testing a board</a>
+</li>
+
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../about/">About</a>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../i2c/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../sdio/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+    
+        <li class="main active"><a href="#i2s">I2S</a></li>
+        
+    
+        <li class="main "><a href="#this-library-is-in-beta-and-the-api-implementation-is-subject-to-change">This library is in beta, and the API / implementation is subject to change!</a></li>
+        
+            <li><a href="#i2sclassspi_typedef-instance">I2SClass(SPI_TypeDef *instance);</a></li>
+        
+            <li><a href="#i2sclassspi_typedef-instance-uint8_t-sd-uint8_t-ws-uint8_t-ck">I2SClass(SPI_TypeDef *instance, uint8_t sd, uint8_t ws, uint8_t ck);</a></li>
+        
+            <li><a href="#i2sclassspi_typedef-instance-uint8_t-sd-uint8_t-ws-uint8_t-ck-uint8_t-mck">I2SClass(SPI_TypeDef *instance, uint8_t sd, uint8_t ws, uint8_t ck, uint8_t mck);</a></li>
+        
+            <li><a href="#uint8_t-i2sclassbegini2s_mode_t-mode-uint32_t-samplerate-uint8_t-bitspersample">uint8_t I2SClass::begin(i2s_mode_t mode, uint32_t sampleRate, uint8_t bitsPerSample);</a></li>
+        
+            <li><a href="#writeint16_t-data">write(int16_t data);</a></li>
+        
+            <li><a href="#writeint16_t-data-uint16_t-size">write(int16_t *data, uint16_t size);</a></li>
+        
+            <li><a href="#setbufferuint16_t-buffer-int-buffersize">setBuffer(uint16_t *buffer, int bufferSize);</a></li>
+        
+            <li><a href="#int-getbuffersize">int getBufferSize();</a></li>
+        
+            <li><a href="#stm32setsduint8_t-pin">stm32SetSD(uint8_t pin);</a></li>
+        
+            <li><a href="#stm32setwduint8_t-pin">stm32SetWD(uint8_t pin);</a></li>
+        
+            <li><a href="#stm32setckuint8_t-pin">stm32SetCK(uint8_t pin);</a></li>
+        
+            <li><a href="#stm32setmckuint8_t-pin">stm32SetMCK(uint8_t pin);</a></li>
+        
+    
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="i2s">I2S</h2>
+<p>Not to be confused with <a href="../i2c/">I2C</a>, is a protocol for connecting to audio devices.
+The samples are sent continuously in the background using DMA transfer. </p>
+<h2 id="this-library-is-in-beta-and-the-api-implementation-is-subject-to-change"><strong>This library is in beta, and the API / implementation is subject to change!</strong></h2>
+<p>To use this library, include it in your code:</p>
+<pre><code class="c++">#include &quot;I2S.h&quot;
+
+I2SClass i2s(...);
+
+</code></pre>
+
+<h4 id="i2sclassspi_typedef-instance"><strong><code>I2SClass(SPI_TypeDef *instance);</code></strong></h4>
+<p>Construct I2S that will be connected to the specified I2S instance on chip.</p>
+<p>The board default pins will be used for sd/ws/ck. mck will not be used.</p>
+<h4 id="i2sclassspi_typedef-instance-uint8_t-sd-uint8_t-ws-uint8_t-ck"><strong><code>I2SClass(SPI_TypeDef *instance, uint8_t sd, uint8_t ws, uint8_t ck);</code></strong></h4>
+<p>Construct I2S that will be connected to the specified I2S instance on chip.</p>
+<p>The specified pins will be used for sd/ws/ck. mck will not be used.</p>
+<h4 id="i2sclassspi_typedef-instance-uint8_t-sd-uint8_t-ws-uint8_t-ck-uint8_t-mck"><strong><code>I2SClass(SPI_TypeDef *instance, uint8_t sd, uint8_t ws, uint8_t ck, uint8_t mck);</code></strong></h4>
+<p>Construct I2S that will be connected to the specified I2S instance on chip.</p>
+<p>The specified pins will be used for sd/ws/ck/mck.</p>
+<h4 id="uint8_t-i2sclassbegini2s_mode_t-mode-uint32_t-samplerate-uint8_t-bitspersample"><strong><code>uint8_t I2SClass::begin(i2s_mode_t mode, uint32_t sampleRate, uint8_t bitsPerSample);</code></strong></h4>
+<p>Configure the pins, and the parameters for the connection.</p>
+<ul>
+<li>mode: one of I2S_PHILIPS_MODE,I2S_RIGHT_JUSTIFIED_MODE, I2S_LEFT_JUSTIFIED_MODE</li>
+<li>sampleRate: between 8000 and 96000</li>
+<li>bitsPerSample: 16. <strong> (Note: 24 or 32 bit per sample currently not working!) </strong></li>
+</ul>
+<h4 id="writeint16_t-data"><strong><code>write(int16_t data);</code></strong></h4>
+<p>Send 16 bit data. Blocks if there is no space left in the internal buffer.</p>
+<h4 id="writeint16_t-data-uint16_t-size"><strong><code>write(int16_t *data, uint16_t size);</code></strong></h4>
+<p>Send 16 bit data. Blocks if there is no space left in the internal buffer.</p>
+<h4 id="setbufferuint16_t-buffer-int-buffersize"><strong><code>setBuffer(uint16_t *buffer, int bufferSize);</code></strong></h4>
+<p>Set the DMA transfer buffer size. The default buffer is 2048 * 16 bits.</p>
+<h4 id="int-getbuffersize"><strong><code>int getBufferSize();</code></strong></h4>
+<p>Returns size of the transfer buffer.</p>
+<h4 id="stm32setsduint8_t-pin"><strong><code>stm32SetSD(uint8_t pin);</code></strong></h4>
+<p>Set the alternative SD pin used by this I2S.</p>
+<p><strong>This method must be called before begin()!</strong></p>
+<h4 id="stm32setwduint8_t-pin"><strong><code>stm32SetWD(uint8_t pin);</code></strong></h4>
+<p>Set the alternative WD pin used by this I2S.</p>
+<p><strong>This method must be called before begin()!</strong></p>
+<h4 id="stm32setckuint8_t-pin"><strong><code>stm32SetCK(uint8_t pin);</code></strong></h4>
+<p>Set the alternative CK pin used by this I2S.</p>
+<p><strong>This method must be called before begin()!</strong></p>
+<h4 id="stm32setmckuint8_t-pin"><strong><code>stm32SetMCK(uint8_t pin);</code></strong></h4>
+<p>Set the alternative MCK pin used by this I2S.</p>
+<p><strong>This method must be called before begin()!</strong></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

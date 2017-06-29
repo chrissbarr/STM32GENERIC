@@ -85,3 +85,9 @@ const stm32_port_pin_type variant_pin_list[] = {
   { GPIOE, GPIO_PIN_15},
 };
 
+extern "C" void initVariant() {
+  #if defined(VECT_TAB_OFFSET)
+    SCB->VTOR = 0x08010000;//(0x08000000 || DVECT_TAB_OFFSET);
+  #endif
+}
+

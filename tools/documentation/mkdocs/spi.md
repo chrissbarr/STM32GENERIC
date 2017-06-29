@@ -56,31 +56,46 @@ Example:
 SPI.beginTransaction(SPISettings(16000000, MSBFIRST, SPI_MODE0));
 ```
 
-TODO disable interrupt in pin if `usingInterrupt` was used
-
 #### **`endTransaction();`**
 
-TODO enable interrupt in pin if `usingInterrupt` was used
+#### **`uint8_t transfer(uint8_t data);`**
 
-#### **`transfer(...);`**
+Send a 8 bits on SPI, and return the received 8 bit data.
 
-TODO write doc
+#### **`uint16_t transfer16(uint16_t data);`**
 
-#### **`transfer16(...);`**
+Send a 16 bits on SPI, and return the received 16 bit data.
 
-TODO write doc
+#### **`transfer(uint8_t *buf, size_t count);`**
 
-#### **`transfer(...);`**
+Send the data in the buffer. The received data is stored in the same buffer.
 
-TODO write doc
+#### **`transfer(tx, rxBuffer, size_t count[, callback]);`**
 
-#### **`usingInterrupt();`**
+`tx`|
+---              |---
+uint8_t txData   | the same byte is sent `count` times
+uint8_t *txBuffer| the buffer is sent
+NULL             | 0xFF is sent `count` times
 
-TODO not yet implemented
+`rxBuffer`|
+---               |---
+uint8_t *rxBuffer | the received data is stored in the rxBuffer
+NULL              | the received data is ignored
 
-#### **`transfer(...);`**
+`callback`|
+---                | ---
+parameter not set  | transfer is blocking
+NULL               | transfer is **non-blocking**, sends the data using DMA, and returns immediately.
+function pointer   | transfer is **non-blocking**, sends the data using DMA, and returns immediately.  At the end of the transfer, the callback function is called in interrupt.
 
-TODO write doc
+#### **`void flush(void);`**
+
+Waits for the last non-blocking transfer to complete.
+
+#### **`bool done(void);`**
+
+Returns true if the last non-blocking transfer is completed.
 
 #### **`stm32SetMOSI(uint8_t pin);`**
 
