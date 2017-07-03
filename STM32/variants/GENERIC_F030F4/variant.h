@@ -3,13 +3,33 @@
 
 #define LED_BUILTIN PA9
 
-#define MOSI PB5
-#define MISO PB4
-#define SCK PB3
+#define MOSI PA7
+#define MISO PA6
+#define SCK PA5
 #define SS PA4
 
 #define SDA PF0
 #define SCL PF1
 
+#define VARIANT_PIN_LIST \
+   PIN(A,0 ), /* D0 */ \
+   PIN(A,1 ), /* D1 */ \
+   PIN(A,2), /* D2 */ \
+   PIN(A,3 ), /* D3 */ \
+   PIN(A,4 ), /* D4 */ \
+   PIN(A,5 ), /* D5 */ \
+   PIN(A,6), /* D6 */ \
+   PIN(A,7 ), /* D7 */ \
+   PIN(A,8 ), /* D8 */ \
+   PIN(A,9 ), /* D9 */ \
+   PIN(A,10 ), /* D10 */ \
+   PIN(A,11 ), /* D11 */ \
+   PIN(A,12 ), /* D12 */ \
+   PIN(A,13 ), /* D13 */ \
+   PIN(A,14 ), /* D14 */ \
+   PIN(A,15 ), /* D15 */ \
+   PIN(B,0 ), /* D16 / A0 */ \
+   PIN(F,0 ), /* D17 / A1 */ \
+   PIN(F,1 ), /* D18 / A2 */ 
 
 #endif

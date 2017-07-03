@@ -17,8 +17,8 @@ typedef struct {
 
 const dma_request_to_instance_t dmaRequestToStream[] = {
 
-    {SPI1, SPI_TX, DMA1_Channel3, 3, DMA1_Channel3_IRQn},
-    {SPI1, SPI_RX, DMA1_Channel2, 2, DMA1_Channel2_IRQn},
+    {SPI1, SPI_TX, DMA1_Channel3, 3, DMA1_Channel2_3_IRQn},
+    {SPI1, SPI_RX, DMA1_Channel2, 2, DMA1_Channel2_3_IRQn},
 
 #ifdef SPI2
     {SPI2, SPI_TX, DMA1_Channel5, 5, DMA1_Channel5_IRQn},
