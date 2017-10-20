@@ -549,6 +549,44 @@ GENERIC_F030F4.menu.usb.Disabled=Disabled, no USB
 GENERIC_F030F4.menu.serial.SerialUART1=SerialUART1 [Through ST-Link Virtual COM port] [PA9/PA10]
 GENERIC_F030F4.menu.serial.SerialUART1.build.extra_flags_serial=-DMENU_SERIAL=SerialUART1
 
+################################################################################
+# Discovery F030R8 board
+
+DISCOVERY_F030R8.name=Discovery F030R8
+
+DISCOVERY_F030R8.upload.maximum_size=65536
+DISCOVERY_F030R8.upload.maximum_data_size=8192
+
+DISCOVERY_F030R8.build.core=arduino
+DISCOVERY_F030R8.build.board=DISCOVERY_F030R8
+
+DISCOVERY_F030R8.build.mcu=cortex-m0
+DISCOVERY_F030R8.build.series=STM32F0
+DISCOVERY_F030R8.build.variant=DISCOVERY_F030R8
+DISCOVERY_F030R8.build.extra_flags=-DSTM32F030R8
+DISCOVERY_F030R8.build.f_cpu=48000000L
+
+DISCOVERY_F030R8.upload.protocol=STLink
+DISCOVERY_F030R8.upload.tool=stlink_upload
+
+DISCOVERY_F030R8.menu.upload_method.STLinkMethod=STLink
+DISCOVERY_F030R8.menu.upload_method.STLinkMethod.upload.protocol=STLink
+DISCOVERY_F030R8.menu.upload_method.STLinkMethod.upload.tool=stlink_upload
+
+DISCOVERY_F030R8.menu.upload_method.MassStorageMethod=Mass Storage
+DISCOVERY_F030R8.menu.upload_method.MassStorageMethod.upload.protocol=
+DISCOVERY_F030R8.menu.upload_method.MassStorageMethod.upload.tool=nucleoFlasher
+DISCOVERY_F030R8.menu.upload_method.MassStorageMethod.massstorage_drive=DISCOVERY
+
+DISCOVERY_F030R8.menu.usb.SerialUSB=Serial [Virtual COM port, PA11/PA12 pins]
+DISCOVERY_F030R8.menu.usb.SerialUSB.build.extra_flags_usb=-DMENU_USB_SERIAL
+DISCOVERY_F030R8.menu.usb.SerialMSC=Mass storage [testing, see documentation]
+DISCOVERY_F030R8.menu.usb.SerialMSC.build.extra_flags_usb=-DMENU_USB_MASS_STORAGE
+DISCOVERY_F030R8.menu.usb.Disabled=Disabled, no USB
+
+DISCOVERY_F030R8.menu.serial.SerialUART1=SerialUART1 [Through ST-Link Virtual COM port] [PA9/PA10]
+DISCOVERY_F030R8.menu.serial.SerialUART1.build.extra_flags_serial=-DMENU_SERIAL=SerialUART1
+
 #################################### Nucleo-144 ############################################
 # NUCLEO 144 board
 

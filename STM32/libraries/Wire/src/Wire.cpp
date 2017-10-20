@@ -64,38 +64,36 @@ void TwoWire::begin(uint8_t address) {
     isMaster = 0;
     this->address = address << 1;
 
-    stm32AfI2CInit(handle.Instance, sdaPort, sdaPin, sclPort, sclPin);
-
     #ifdef I2C1
     if (handle.Instance == I2C1) {
         slaveTwoWire[0] = this;
         __HAL_RCC_I2C1_CLK_ENABLE();
-        HAL_NVIC_SetPriority(I2C1_EV_IRQn, 1, 0);
-        HAL_NVIC_EnableIRQ(I2C1_EV_IRQn);
+        HAL_NVIC_SetPriority(I2C1_IRQn, 1, 0);
+        HAL_NVIC_EnableIRQ(I2C1_IRQn);
     }
     #endif
     #ifdef I2C2
     if (handle.Instance == I2C2) {
         slaveTwoWire[1] = this;
         __HAL_RCC_I2C2_CLK_ENABLE();
-        HAL_NVIC_SetPriority(I2C2_EV_IRQn, 0, 0);
-        HAL_NVIC_EnableIRQ(I2C2_EV_IRQn);
+        HAL_NVIC_SetPriority(I2C2_IRQn, 0, 0);
+        HAL_NVIC_EnableIRQ(I2C2_IRQn);
     }
     #endif
     #ifdef I2C3
     if (handle.Instance == I2C3) {
         slaveTwoWire[2] = this;
         __HAL_RCC_I2C3_CLK_ENABLE();
-        HAL_NVIC_SetPriority(I2C3_EV_IRQn, 0, 0);
-        HAL_NVIC_EnableIRQ(I2C3_EV_IRQn);
+        HAL_NVIC_SetPriority(I2C3_IRQn, 0, 0);
+        HAL_NVIC_EnableIRQ(I2C3_IRQn);
     }
     #endif
     #ifdef I2C4
     if (handle.Instance == I2C4) {
         slaveTwoWire[3] = this;
         __HAL_RCC_I2C4_CLK_ENABLE();
-        HAL_NVIC_SetPriority(I2C4_EV_IRQn, 0, 0);
-        HAL_NVIC_EnableIRQ(I2C4_EV_IRQn);
+        HAL_NVIC_SetPriority(I2C4_IRQn, 0, 0);
+        HAL_NVIC_EnableIRQ(I2C4_IRQn);
     }
     #endif
 
@@ -106,8 +104,10 @@ void TwoWire::begin(uint8_t address) {
     handle.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
     handle.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
 
+    stm32AfI2CInit(handle.Instance, sdaPort, sdaPin, sclPort, sclPin);
+
     setClock(100000);
-    HAL_I2C_Slave_Receive_IT(&handle, &slaveBuffer, 1);
+    //HAL_I2C_Slave_Receive_IT(&handle, &slaveBuffer, 1);
 
     //TODO rewrite IRQ handling to not use HAL_I2C_EV_IRQHandler, so F1 can also work
     #ifndef STM32F1
@@ -388,7 +388,7 @@ void TwoWire::stm32SetSCL(uint8_t scl) {
 TwoWire *interruptWire;
 
 #ifdef I2C1
-extern "C" void I2C1_EV_IRQHandler(void ) {
+extern "C" void I2C1_IRQHandler(void ) {
     interruptWire = slaveTwoWire[0];
     HAL_I2C_EV_IRQHandler(&interruptWire->handle);
 }
@@ -422,7 +422,7 @@ extern "C" void HAL_I2C_SlaveRxCpltCallback(I2C_HandleTypeDef *handle) {
 
 extern "C" void HAL_I2C_AddrCallback(I2C_HandleTypeDef *handle, uint8_t TransferDirection, uint16_t AddrMatchCode) {
     if (interruptWire != NULL && TransferDirection == 0) {
-        interruptWire->user_onRequest();
+        interruptWire->onRequestService();
 
         if (interruptWire->txBufferLength > 0) {
 
@@ -434,8 +434,9 @@ extern "C" void HAL_I2C_AddrCallback(I2C_HandleTypeDef *handle, uint8_t Transfer
             interruptWire->txBufferLength = 0;
 
             #ifdef I2C_IT_BUF
-            __HAL_I2C_ENABLE_IT(handle, I2C_IT_EVT | I2C_IT_BUF);
+            __HAL_I2C_ENABLE_IT(handle, I2C_IT_EVT | I2C_IT_BUF);   //todo: investigate
             #endif
+            //__HAL_I2C_ENABLE_IT(handle, I2C_IT_ADDRI | I2C_IT_RXI | I2C_IT_TXI | I2C_IT_STOPI);   //todo: investigate
         }
     }
 

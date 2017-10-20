@@ -1,15 +1,17 @@
 #ifndef VARIANT_H
 #define VARIANT_H
 
-#define LED_BUILTIN PA9
+#define LED_BUILTIN PB0
 
 #define MOSI PA7
-#define MISO PA6
-#define SCK PA5
+#define MISO PA13
+#define SCK PA14
 #define SS PA4
 
-#define SDA PF0
-#define SCL PF1
+#define SDA PA10
+#define SCL PA9
+
+#define I2C1_100KHZ_TIMING 0x2000090E
 
 #define VARIANT_PIN_LIST \
    PIN(A,0 ), /* D0 */ \
