@@ -44,6 +44,7 @@ void pwm_callback();
 
 typedef struct {
     GPIO_TypeDef *port;
+    void (*callback)();
     uint32_t pin_mask;
     uint32_t waveLengthCycles;
     uint32_t dutyCycle;
@@ -58,7 +59,7 @@ void analogWriteResolution(int bits) {
     analogWriteResolutionBits = bits;
 }
 
-void pwmWrite(uint8_t pin, int dutyCycle, int frequency, int durationMillis) {
+static void initTimer() {
     static TIM_HandleTypeDef staticHandle;
 
     if (handle == NULL) {
@@ -91,6 +92,10 @@ void pwmWrite(uint8_t pin, int dutyCycle, int frequency, int durationMillis) {
 
         HAL_TIM_Base_Start_IT(handle);
     }
+}
+
+void pwmWrite(uint8_t pin, int dutyCycle, int frequency, int durationMillis) {
+    initTimer();
 
     for(size_t i=0; i<sizeof(pwm_config) / sizeof(pwm_config[0]); i++) {
         if (pwm_config[i].port == NULL ||
@@ -101,13 +106,19 @@ void pwmWrite(uint8_t pin, int dutyCycle, int frequency, int durationMillis) {
                 pinMode(pin, OUTPUT);
             }
 
+            #ifdef STM32F0 // TODO better condition for when there is no pclk2
+                uint32_t timerFreq = HAL_RCC_GetPCLK1Freq();
+            #else
+                uint32_t timerFreq = HAL_RCC_GetPCLK2Freq();
+            #endif
+
             pwm_config[i].port = variant_pin_list[pin].port;
             pwm_config[i].pin_mask = variant_pin_list[pin].pin_mask;
-            pwm_config[i].waveLengthCycles = HAL_RCC_GetPCLK2Freq() / frequency;
-            pwm_config[i].dutyCycle = pwm_config[i].waveLengthCycles * dutyCycle / (1 << analogWriteResolutionBits);
+            pwm_config[i].waveLengthCycles = timerFreq / frequency;
+            pwm_config[i].dutyCycle = (uint64_t)pwm_config[i].waveLengthCycles * dutyCycle >> 16;
 
             if (durationMillis > 0) {
-                pwm_config[i].counterCycles = HAL_RCC_GetPCLK2Freq() / 1000 * durationMillis;
+                pwm_config[i].counterCycles = timerFreq / 1000 * durationMillis;
             }
 
             break;
@@ -116,11 +127,26 @@ void pwmWrite(uint8_t pin, int dutyCycle, int frequency, int durationMillis) {
 }
 
 extern void tone(uint8_t pin, unsigned int frequency, unsigned long durationMillis) {
-    pwmWrite(pin, 1 << (analogWriteResolutionBits - 1), frequency, durationMillis);
+    pwmWrite(pin, 1 << 15, frequency, durationMillis);
 }
 
 void analogWrite(uint8_t pin, int value) {
-    pwmWrite(pin, value, PWM_FREQUENCY_HZ, 0);
+    pwmWrite(pin, ((uint32_t)value << 16) >> analogWriteResolutionBits, PWM_FREQUENCY_HZ, 0);
+}
+
+void stm32ScheduleMicros(uint32_t microseconds, void (*callback)()) {
+    initTimer();
+
+    for(size_t i=0; i<sizeof(pwm_config) / sizeof(pwm_config[0]); i++) {
+        if (pwm_config[i].port == NULL && pwm_config[i].callback == NULL) {
+
+            pwm_config[i].callback = callback;
+
+            pwm_config[i].waveLengthCycles = HAL_RCC_GetPCLK2Freq() * (uint64_t)microseconds / 1000000;
+            pwm_config[i].counterCycles = pwm_config[i].waveLengthCycles;
+            break;
+        }
+    }
 }
 
 void stm32_pwm_disable(GPIO_TypeDef *port, uint32_t pin_mask) {
@@ -170,6 +196,12 @@ void pwm_callback() {
                         } else {
                             pwm_config[i].counterCycles -= waitCycles;
                         }
+                    }
+                } else if (pwm_config[i].callback != NULL) {
+                    pwm_config[i].counterCycles -= waitCycles;
+                    if (pwm_config[i].counterCycles < 0) {
+                        pwm_config[i].callback();
+                        pwm_config[i].counterCycles += pwm_config[i].waveLengthCycles;
                     }
                 } else {
                     break;

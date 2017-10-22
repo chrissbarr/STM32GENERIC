@@ -111,6 +111,9 @@ void analogReference(uint8_t mode);
 void analogWrite(uint8_t, int);
 void analogWriteResolution(int bits);
 
+//STM32GENERIC only:
+void pwmWrite(uint8_t pin, int dutyCycle16Bits, int frequency, int durationMillis);
+
 //unsigned long millis(void);
 //unsigned long micros(void);
 //void delay(unsigned long);
@@ -182,11 +185,13 @@ long map(long, long, long, long, long);
 #include "stm32_def.h"
 #include "stm32_clock.h"
 #include "stm32_gpio.h"
+#include "stm32_debug.h"
 
 #ifdef __cplusplus
 
 #include "SerialUART.h"
 #include <SerialUSB.h>
+#include <STM32System.h>
 
 #if defined(MENU_SERIAL)
 #define Serial MENU_SERIAL
