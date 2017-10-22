@@ -11,4 +11,4 @@ set str=%str:/=\%
 
 
 rem: ------------- use dfu-util CLI
-dfu-util.exe -V -d 0483:df11 -D %str% -s 0x08010000
+"dfu-util-0.9-win64/dfu-util.exe" -V -d %3 -D %str% -s 0x08010000
