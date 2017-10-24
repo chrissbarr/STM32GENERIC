@@ -20,6 +20,11 @@
 #define A4 PE3
 #define A5 PE4
 
+#define EEPROM_BLOCK_0_SECTOR    6
+#define EEPROM_BLOCK_1_SECTOR    7
+#define EEPROM_BLOCK_0_SIZE      128
+#define EEPROM_BLOCK_1_SIZE      128
+
 #define VARIANT_PIN_LIST \
    PIN(A,0), \
    PIN(A,1), \
