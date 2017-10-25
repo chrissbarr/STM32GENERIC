@@ -769,9 +769,8 @@ PICO_F446VE.menu.upload_method.DFUUploadMethod2.build.extra_flags=-DSTM32F446VE 
 PICO_F446VE.menu.upload_method.DFUUploadMethod2.build.ldscript=ldscript_bootloader_10000.ld
 PICO_F446VE.menu.upload_method.DFUUploadMethod2.upload.usbID=0483:df11
 PICO_F446VE.menu.upload_method.DFUUploadMethod2.upload.altID=2
-PICO_F446VE.menu.upload_method.DFUUploadMethod2.flash.maximum_size=460000
-PICO_F446VE.menu.upload_method.DFUUploadMethod2.maximum_data_size=460000
-PICO_F446VE.menu.upload_method.DFUUploadMethod2.ram.maximum_size=131072
+PICO_F446VE.menu.upload_method.DFUUploadMethod2.upload.maximum_size=458752
+PICO_F446VE.menu.upload_method.DFUUploadMethod2.upload.maximum_data_size=131072
 PICO_F446VE.menu.upload_method.DFUUploadMethod2.build.extra_flags_serial_auto=-DMENU_SERIAL_AUTO=SerialUSB
 
 PICO_F446VE.menu.usb.SerialUSB=Serial [Virtual COM port, PA11/PA12 pins]
