@@ -5,9 +5,9 @@
 
 #define STM32_LED_BUILTIN_ACTIVE_HIGH
 
-#define MOSI PE14
-#define MISO PE13
-#define SCK PE12
+#define MOSI PA7
+#define MISO PA6
+#define SCK PA5
 #define SS PA4
 
 #define SDA PB9
@@ -20,10 +20,21 @@
 #define A4 PE3
 #define A5 PE4
 
-#define EEPROM_BLOCK_0_SECTOR    6
-#define EEPROM_BLOCK_1_SECTOR    7
-#define EEPROM_BLOCK_0_SIZE      128
-#define EEPROM_BLOCK_1_SIZE      128
+
+#if defined(EEPROM_START_FLASH)
+   #warning "EEPROM in sectors 2 and 3"
+   #define EEPROM_BLOCK_0_SECTOR    2
+   #define EEPROM_BLOCK_1_SECTOR    3
+   #define EEPROM_BLOCK_0_SIZE      16
+   #define EEPROM_BLOCK_1_SIZE      16
+#else
+   #warning "EEPROM in sectors 6 and 7"
+   #define EEPROM_BLOCK_0_SECTOR    6
+   #define EEPROM_BLOCK_1_SECTOR    7
+   #define EEPROM_BLOCK_0_SIZE      128
+   #define EEPROM_BLOCK_1_SIZE      128
+#endif
+
 
 #define VARIANT_PIN_LIST \
    PIN(A,0), \

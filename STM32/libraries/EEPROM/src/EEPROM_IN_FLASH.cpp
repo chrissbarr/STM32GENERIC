@@ -17,7 +17,7 @@
     #include "STM32F4FlashBlock.h"
 
     #if defined(EEPROM_BLOCK_0_SECTOR) && defined (EEPROM_BLOCK_0_SIZE) && defined(EEPROM_BLOCK_1_SECTOR) && defined (EEPROM_BLOCK_1_SIZE)
-        #warning "Using variant-specific flash sectors as EEPROM emulation"
+        #warning "Using variant-specific flash sectors as EEPROM emulation:"
 
         STM32F4EmbeddedFlashBlock block0(sectors[EEPROM_BLOCK_0_SECTOR], EEPROM_BLOCK_0_SIZE * 1024);
         STM32F4EmbeddedFlashBlock block1(sectors[EEPROM_BLOCK_1_SECTOR], EEPROM_BLOCK_1_SIZE * 1024);
@@ -27,6 +27,8 @@
 
         STM32F4EmbeddedFlashBlock block0(FLASH_BASE + 2 * 128 * 1024, 128 * 1024);
         STM32F4EmbeddedFlashBlock block1(FLASH_BASE + 3 * 128 * 1024, 128 * 1024);
+        //STM32F4EmbeddedFlashBlock block0(FLASH_BASE + 2 * 16 * 1024, 16 * 1024);
+       // STM32F4EmbeddedFlashBlock block1(FLASH_BASE + 3 * 16 * 1024, 16 * 1024);
 
     #endif
 
