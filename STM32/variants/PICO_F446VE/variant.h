@@ -22,13 +22,13 @@
 
 
 #if defined(EEPROM_START_FLASH)
-   #warning "EEPROM in sectors 2 and 3"
+   //#warning "EEPROM in sectors 2 and 3"
    #define EEPROM_BLOCK_0_SECTOR    2
    #define EEPROM_BLOCK_1_SECTOR    3
    #define EEPROM_BLOCK_0_SIZE      16
    #define EEPROM_BLOCK_1_SIZE      16
 #else
-   #warning "EEPROM in sectors 6 and 7"
+   //#warning "EEPROM in sectors 6 and 7"
    #define EEPROM_BLOCK_0_SECTOR    6
    #define EEPROM_BLOCK_1_SECTOR    7
    #define EEPROM_BLOCK_0_SIZE      128
