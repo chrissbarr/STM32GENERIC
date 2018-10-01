@@ -130,6 +130,11 @@ BluePill.menu.upload_method.BMPMethod=BMP (Black Magic Probe)
 BluePill.menu.upload_method.BMPMethod.upload.protocol=gdb_bmp
 BluePill.menu.upload_method.BMPMethod.upload.tool=bmp_upload
 
+BluePill.menu.upload_method.HIDMethod=HID Bootloader 2.0 (0x1000)
+BluePill.menu.upload_method.HIDMethod.upload.tool=hid_upload
+BluePill.menu.upload_method.HIDMethod.build.extra_flags_serial_auto=-DMENU_SERIAL_AUTO=SerialUSB -DVECT_TAB_OFFSET=0x1000 -DHIDBL_F1
+BluePill.menu.upload_method.HIDMethod.build.ldscript=hid_bootloader.ld
+
 BluePill.menu.usb.SerialUSB=Serial [Virtual COM port, PA11/PA12 pins]
 BluePill.menu.usb.SerialUSB.build.extra_flags_usb=-DMENU_USB_SERIAL
 BluePill.menu.usb.SerialMSC=Mass storage [testing, see documentation]
@@ -370,7 +375,7 @@ BLUE_F103XX.menu.subboard.BLUE_F103ZG.build.extra_flags=-DSTM32F103ZG -DHSE_VALU
 ################################################################################
 # BLACK_F407XX board
 
-BLACK_F407XX.name=BLACK F407VE/ZE/ZG boards
+BLACK_F407XX.name=BLACK F407VG/VE/ZE/ZG boards
 
 BLACK_F407XX.upload.maximum_size=524288
 BLACK_F407XX.upload.maximum_data_size=131072
@@ -393,6 +398,11 @@ BLACK_F407XX.menu.upload_method.serialMethod=Serial UART1 [TX/PA9, RX/PA10, BOOT
 BLACK_F407XX.menu.upload_method.serialMethod.upload.protocol=maple_serial
 BLACK_F407XX.menu.upload_method.serialMethod.upload.tool=serial_upload
 BLACK_F407XX.menu.upload_method.serialMethod.build.extra_flags_serial_auto=-DMENU_SERIAL_AUTO=SerialUART1
+
+BLACK_F407XX.menu.upload_method.HIDMethod=HID Bootloader 2.0
+BLACK_F407XX.menu.upload_method.HIDMethod.upload.tool=hid_upload
+BLACK_F407XX.menu.upload_method.HIDMethod.build.ldscript=ldscript_bootloader_4000.ld
+BLACK_F407XX.menu.upload_method.HIDMethod.build.extra_flags_serial_auto=-DMENU_SERIAL_AUTO=SerialUSB -DVECT_TAB_OFFSET=0x4000 -DHIDBL_F4
 
 BLACK_F407XX.menu.usb.SerialUSB=Serial [Virtual COM port, PA11/PA12 pins]
 BLACK_F407XX.menu.usb.SerialUSB.build.extra_flags_usb=-DMENU_USB_SERIAL
@@ -426,6 +436,13 @@ BLACK_F407XX.menu.subboard.BLACK_F407ZG.upload.maximum_data_size=131072
 BLACK_F407XX.menu.subboard.BLACK_F407ZG.build.variant=BLACK_F407ZG
 BLACK_F407XX.menu.subboard.BLACK_F407ZG.build.board=BLACK_F407ZG
 BLACK_F407XX.menu.subboard.BLACK_F407ZG.build.extra_flags=-DSTM32F407ZG -DHSE_VALUE=8000000
+
+BLACK_F407XX.menu.subboard.BLACK_F407VG=BLACK F407VG
+BLACK_F407XX.menu.subboard.BLACK_F407VG.upload.maximum_size=1232896
+BLACK_F407XX.menu.subboard.BLACK_F407VG.upload.maximum_data_size=131072
+BLACK_F407XX.menu.subboard.BLACK_F407VG.build.variant=BLACK_F407VG
+BLACK_F407XX.menu.subboard.BLACK_F407VG.build.board=BLACK_F407VG
+BLACK_F407XX.menu.subboard.BLACK_F407VG.build.extra_flags=-DSTM32F407VG -DHSE_VALUE=8000000
 
 ################################################################################
 # NUCLEO 64 board
@@ -677,7 +694,7 @@ DISCOVERY_F407VG.menu.serial.SerialUART2.build.extra_flags_serial=-DMENU_SERIAL=
 ################################################################################
 # Discovery F429ZI board
 
-DISCOVERY_F429ZI.name = Discovery F429ZI
+DISCOVERY_F429ZI.name=Discovery F429ZI
 
 # TBD: correct memory settings here and in ldscript !!
 DISCOVERY_F429ZI.upload.maximum_size=1048576
@@ -714,7 +731,7 @@ DISCOVERY_F429ZI.menu.serial.SerialUART1.build.extra_flags_serial=-DMENU_SERIAL=
 DISCOVERY_F746NG.name=Discovery F746NG
 
 DISCOVERY_F746NG.upload.maximum_size=1048576
-DISCOVERY_F746NG.upload.maximum_data_size=327680
+DISCOVERY_F746NG.upload.maximum_data_size=327680 
 
 DISCOVERY_F746NG.build.core=arduino
 DISCOVERY_F746NG.build.board=DISCO_F746NG
@@ -752,8 +769,6 @@ DISCOVERY_F746NG.menu.serial.SerialUSB.build.extra_flags_serial=-DMENU_SERIAL=Se
 ################################################################################
 # DISCO-B-L475E-IOT01A board
 
-
-
 DISCO_B_L475E_IOT01A.name=Discovery B-L475E-IOT01A
 DISCO_B_L475E_IOT01A.upload.maximum_size=1048576
 DISCO_B_L475E_IOT01A.upload.maximum_data_size=131072
@@ -772,7 +787,6 @@ DISCO_B_L475E_IOT01A.menu.serial.SerialUART1=SerialUART1 [Through ST-Link Virtua
 DISCO_B_L475E_IOT01A.menu.serial.SerialUART1.build.extra_flags_serial=-DMENU_SERIAL=SerialUART1
 DISCO_B_L475E_IOT01A.menu.serial.SerialUSB=SerialUSB
 DISCO_B_L475E_IOT01A.menu.serial.SerialUSB.build.extra_flags_serial=-DMENU_SERIAL=SerialUSB
-
 
 ################################################################################
 # PICO_F446VE board
@@ -825,3 +839,56 @@ PICO_F446VE.menu.serial.SerialUSB=SerialUSB
 PICO_F446VE.menu.serial.SerialUSB.build.extra_flags_serial=-DMENU_SERIAL=SerialUSB
 PICO_F446VE.menu.serial.SerialUART1=SerialUART1
 PICO_F446VE.menu.serial.SerialUART1.build.extra_flags_serial=-DMENU_SERIAL=SerialUART1
+
+################################################################################
+# The Borg board
+
+BORG_F765.name=The Borg
+
+BORG_F765.upload.maximum_size=1048576
+BORG_F765.upload.maximum_data_size=524288
+
+BORG_F765.build.core=arduino
+BORG_F765.build.board=BORG_F765
+
+BORG_F765.build.mcu=cortex-m7 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DHSE_VALUE=12000000
+BORG_F765.build.series=STM32F7
+BORG_F765.build.variant=BORG_F765
+BORG_F765.build.extra_flags=-DSTM32F765ZG -DHSE_VALUE=12000000
+BORG_F765.build.f_cpu=216000000L
+
+BORG_F765.upload.protocol=STLink
+BORG_F765.upload.tool=stlink_upload
+
+BORG_F765.menu.upload_method.STLinkMethod=STLink
+BORG_F765.menu.upload_method.STLinkMethod.upload.protocol=STLink
+BORG_F765.menu.upload_method.STLinkMethod.upload.tool=stlink_upload
+
+BORG_F765.menu.upload_method.serialMethod=Serial UART1 [TX/PA9, RX/PA10, BOOT0=1, BOOT1=0]
+BORG_F765.menu.upload_method.serialMethod.upload.protocol=maple_serial
+BORG_F765.menu.upload_method.serialMethod.upload.tool=serial_upload
+BORG_F765.menu.upload_method.serialMethod.build.extra_flags_serial_auto=-DMENU_SERIAL_AUTO=SerialUART1
+
+BORG_F765.menu.upload_method.DFUUploadMethod2=USB DFU - Custom bootloader (0x10000)
+BORG_F765.menu.upload_method.DFUUploadMethod2.upload.protocol=pico_upload
+BORG_F765.menu.upload_method.DFUUploadMethod2.upload.tool=pico_upload
+BORG_F765.menu.upload_method.DFUUploadMethod2.build.extra_flags=-DSTM32F765ZG -DVECT_TAB_OFFSET=0x10000 -DHSE_VALUE=12000000
+BORG_F765.menu.upload_method.DFUUploadMethod2.build.ldscript=ldscript_bootloader_10000.ld
+BORG_F765.menu.upload_method.DFUUploadMethod2.upload.usbID=0483:df11
+BORG_F765.menu.upload_method.DFUUploadMethod2.upload.altID=2
+BORG_F765.menu.upload_method.DFUUploadMethod2.upload.maximum_size=1048576
+BORG_F765.menu.upload_method.DFUUploadMethod2.upload.maximum_data_size=524288
+BORG_F765.menu.upload_method.DFUUploadMethod2.build.extra_flags_serial_auto=-DMENU_SERIAL_AUTO=SerialUSB
+
+BORG_F765.menu.usb.SerialUSB=Serial [Virtual COM port, PA11/PA12 pins]
+BORG_F765.menu.usb.SerialUSB.build.extra_flags_usb=-DMENU_USB_SERIAL
+BORG_F765.menu.usb.Disabled=Disabled, no USB
+
+BORG_F765.menu.serial.Automatic=Automatically selected based on upload method
+BORG_F765.menu.serial.SerialUSB=SerialUSB
+BORG_F765.menu.serial.SerialUSB.build.extra_flags_serial=-DMENU_SERIAL=SerialUSB
+BORG_F765.menu.serial.SerialUART1=SerialUART1
+BORG_F765.menu.serial.SerialUART1.build.extra_flags_serial=-DMENU_SERIAL=SerialUART1
+
+
+################################################################################
